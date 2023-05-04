@@ -1,0 +1,90 @@
+<!-- 
+   <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="card">
+          <div class="card-header">
+            <h3>Create Employee</h3>
+          </div>
+          <div class="card-body">
+            <form (ngSubmit)="onSubmit()">
+              <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" class="form-control" id="firstName" name="firstName" [(ngModel)]="employe.firstName" required>
+              </div>
+              <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="employe.lastName" required>
+              </div>
+              <div class="form-group">
+                <label for="emailId">Email</label>
+                <input type="email" class="form-control" id="emailId" name="emailId" [(ngModel)]="employe.emailId" required>
+              </div>
+              <div class="form-group">
+                <label for="designation">Designation</label>
+                <input type="text" class="form-control" id="designation" name="designation" [(ngModel)]="employe.designation" required>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+   
+    -->
+    <div class="container">
+        <div class="row">
+          <div class="col-md-6 offset-md-3">
+            <div class="card">
+              <div class="card-header">
+                <h3>Create Employee</h3>
+              </div>
+              <div class="card-body">
+    <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" class="form-control" id="firstName" formControlName="firstName">
+            <div *ngIf="employeeForm.get('firstName')!.invalid && (employeeForm.get('firstName')!.dirty || employeeForm.get('firstName')!.touched)" class="alert alert-danger">
+                <div *ngIf="employeeForm.get('firstName')!.errors?.['required']">First Name is required</div>
+                <div *ngIf="employeeForm.get('firstName')!.errors?.['minlength']">First Name should be at least 3 characters</div>
+                <div *ngIf="employeeForm.get('firstName')!.errors?.['maxlength']">First Name should not exceed 20 characters</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" class="form-control" id="lastName" formControlName="lastName">
+            <div *ngIf="employeeForm.get('lastName')!.invalid && (employeeForm.get('lastName')!.dirty || employeeForm.get('lastName')!.touched)" class="alert alert-danger">
+                <div *ngIf="employeeForm.get('lastName')!.errors?.['required']">Last Name is required</div>
+                <div *ngIf="employeeForm.get('lastName')!.errors?.['minlength']">Last Name should be at least 3 characters</div>
+                <div *ngIf="employeeForm.get('lastName')!.errors?.['maxlength']">Last Name should not exceed 20 characters</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="lastName">Email</label>
+            <input type="text" class="form-control" id="emailId" formControlName="emailId">
+            <div *ngIf="employeeForm.get('emailId')!.invalid && (employeeForm.get('emailId')!.dirty || employeeForm.get('emailId')!.touched)" class="alert alert-danger">
+                <div *ngIf="employeeForm.get('emailId')!.errors?.['required']">Email required</div>
+                <!-- <div *ngIf="employeeForm.get('emailId')!.errors?.['minlength']">Last Name should be at least 3 characters</div> -->
+                <!-- <div *ngIf="employeeForm.get('emailId')!.errors?.['maxlength']">Last Name should not exceed 20 characters</div> -->
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="lastName"> Designation</label>
+            <input type="text" class="form-control" id="designation" formControlName="designation">
+            <div *ngIf="employeeForm.get('designation')!.invalid && (employeeForm.get('lastName')!.dirty || employeeForm.get('lastName')!.touched)" class="alert alert-danger">
+                <div *ngIf="employeeForm.get('designation')!.errors?.['required']">Designationis required</div>
+                <!-- <div *ngIf="employeeForm.get('designation')!.errors?.['minlength']">Last Name should be at least 3 characters</div> -->
+                <div *ngIf="employeeForm.get('designation')!.errors?.['maxlength']">Designationshould not exceed 20 characters</div>
+            </div>
+          </div>
+          <br>
+        <button type="submit" class="btn btn-danger" [disabled]="!employeeForm.valid">Submit</button>
+      </form>
+    </div>
+</div>
+</div>
+</div>
+</div>
+      
